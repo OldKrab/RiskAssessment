@@ -1,6 +1,4 @@
 ﻿#pragma once
-#include <iostream>
-#include <utility>
 #include "Matrix.h"
 
 class BaseCriterion
@@ -11,9 +9,8 @@ public:
 	virtual std::vector<size_t> Solve() const = 0;
 
 	virtual ~BaseCriterion() = default;
+	static Matrix<int> GetRisksMatrix(Matrix<int> matrix);
 protected:
-	Matrix<int> GetRisksMatrix() const;
-
 	Matrix<int> matrix_;
 	
 };

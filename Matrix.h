@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <vector>
 #include <algorithm>
+#include <iostream>
 
 template<class T>
 class Matrix
@@ -90,10 +91,11 @@ template <class T>
 std::vector<size_t> GetElementIndexes(const std::vector<T>& vect, T elem)
 {
 	std::vector<size_t> indexes;
-	while(elem != vect.end())
+	auto it = std::find(vect.begin(), vect.end(), elem);
+	while(it != vect.end())
 	{
-		indexes.push_back(std::distance(vect.begin(), elem));
-		elem = std::find(std::next(elem), vect.end(), *elem);
+		indexes.push_back(std::distance(vect.begin(), it));
+		it = std::find(std::next(it), vect.end(), *it);
 	}
 	return indexes;
 }
@@ -103,7 +105,7 @@ template <class T>
 std::vector<size_t> GetMaxElementIndexes(const std::vector<T>& vect)
 {
 	auto maxResIt = std::max_element(vect.begin(), vect.end());
-	return GetElementIndexes(vect, maxResIt);
+	return GetElementIndexes(vect, *maxResIt);
 }
 
 // Find all min elements, returns indexes
@@ -111,5 +113,5 @@ template <class T>
 std::vector<size_t> GetMinElementIndexes(const std::vector<T>& vect)
 {
 	auto minResIt = std::min_element(vect.begin(), vect.end());
-	return GetElementIndexes(vect, minResIt);
+	return GetElementIndexes(vect, *minResIt);
 }

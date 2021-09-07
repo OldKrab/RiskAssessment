@@ -152,6 +152,9 @@
     <ClInclude Include="Matrix.h" />
     <ClInclude Include="ProbabilisticCriterion.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="matrix.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

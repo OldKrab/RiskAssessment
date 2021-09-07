@@ -1,25 +1,23 @@
 ﻿#include "BaseCriterion.h"
-
 #include <algorithm>
 
 
-BaseCriterion::BaseCriterion(Matrix<int> matrix): matrix_(std::move(matrix))
-{
-}
+BaseCriterion::BaseCriterion(Matrix<int> matrix) : matrix_(std::move(matrix)) {}
 
-Matrix<int> BaseCriterion::GetRisksMatrix() const
+Matrix<int> BaseCriterion::GetRisksMatrix(Matrix<int> matrix)
 {
-	Matrix<int> risks(matrix_.rowsCount, matrix_.colsCount);
-	std::vector<int> maxInCols(matrix_.colsCount);
-	for(size_t j = 0; j < matrix_.colsCount; j++){
-		auto&& rowWithMaxEl = *std::max_element(matrix_.begin(), matrix_.end(),
+	Matrix<int> risks(matrix.rowsCount, matrix.colsCount);
+	std::vector<int> maxInCols(matrix.colsCount);
+	for(size_t j = 0; j < matrix.colsCount; j++){
+		auto&& rowWithMaxEl = *std::max_element(matrix.begin(), matrix.end(),
 			[j](auto&& row1, auto&& row2){return row1[j] < row2[j];});
 		maxInCols[j] = rowWithMaxEl[j];
 	}
-	for(size_t i = 0; i < matrix_.rowsCount; i++)
-		for(size_t j = 0; j < matrix_.colsCount; j++)
+	for(size_t i = 0; i < matrix.rowsCount; i++)
+		for(size_t j = 0; j < matrix.colsCount; j++)
 		{
-			risks[i][j] = maxInCols[j] - matrix_[i][j];
+			risks[i][j] = maxInCols[j] - matrix[i][j];
 		}
 	return risks;
 }
+

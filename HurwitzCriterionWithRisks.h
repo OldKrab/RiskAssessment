@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "HurwitzCriterion.h"
-class HurwitzCriterionWithRisks:HurwitzCriterion
+class HurwitzCriterionWithRisks:public HurwitzCriterion
 {
 public:
 	HurwitzCriterionWithRisks(Matrix<int> matrix, double coef);

@@ -1,7 +1,5 @@
 ﻿#include "ProbabilisticCriterion.h"
 
-#include <algorithm>
-
 ProbabilisticCriterion::ProbabilisticCriterion(Matrix<int> matrix, std::vector<double> probabilities)
 	: BaseCriterion(matrix),
 	probabilities_(probabilities)
@@ -10,8 +8,8 @@ ProbabilisticCriterion::ProbabilisticCriterion(Matrix<int> matrix, std::vector<d
 
 std::vector<size_t> ProbabilisticCriterion::Solve() const
 {
-	auto risks = GetRisksMatrix();
-	std::vector<int> result;
+	auto risks = GetRisksMatrix(matrix_);
+	std::vector<double> result(matrix_.rowsCount);
 	for(size_t i = 0; i < matrix_.rowsCount; i++)
 		for(size_t j =0; j < matrix_.colsCount; j++)
 		result[i] += probabilities_[j] * risks[i][j];
