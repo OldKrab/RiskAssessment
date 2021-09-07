@@ -1,28 +1,29 @@
 ﻿#pragma once
 #include <vector>
+#include <algorithm>
 
 template<class T>
 class Matrix
 {
 public:
-	Matrix(size_t rows_count, size_t cols_count)
-		:rows_count(rows_count),
-		cols_count(cols_count),
-		data_(rows_count, std::vector<T>(cols_count))
+	Matrix(size_t rowsCount, size_t colsCount)
+		:rowsCount(rowsCount),
+		colsCount(colsCount),
+		data_(rowsCount, std::vector<T>(colsCount))
 	{}
 	
 	Matrix() :Matrix(0, 0) {}
 
 	// Output matrix into stream with specific width
-	void Print(std::ostream& in, std::streamsize width = 3)
+	void Print(std::ostream& out, std::streamsize width = 3)
 	{
 		for (const auto& row : data_) {
 			for (const auto& elem : row)
 			{
-				in.width(width);
-				in << elem;
+				out.width(width);
+				out << elem << ' ';
 			}
-			in << std::endl;
+			out << std::endl;
 		}
 	}
 
@@ -56,7 +57,7 @@ public:
 	}
 
 	
-	const size_t rows_count, cols_count;
+	const size_t rowsCount, colsCount;
 private:
 	std::vector<std::vector<T>> data_;
 };
@@ -72,3 +73,43 @@ std::istream& operator>>(std::istream& in, Matrix<T>& matrix)
 }
 
 
+// Output vector to stream
+template <class T>
+void PrintVector(std::ostream& out, const std::vector<T>& vect, std::streamsize width)
+{
+	for (auto&& elem : vect) {
+		out.width(width);
+		out << elem << ' ';
+	}
+}
+
+
+
+// Find all indexes of elem
+template <class T>
+std::vector<size_t> GetElementIndexes(const std::vector<T>& vect, T elem)
+{
+	std::vector<size_t> indexes;
+	while(elem != vect.end())
+	{
+		indexes.push_back(std::distance(vect.begin(), elem));
+		elem = std::find(std::next(elem), vect.end(), *elem);
+	}
+	return indexes;
+}
+
+// Find all max elements, returns indexes
+template <class T>
+std::vector<size_t> GetMaxElementIndexes(const std::vector<T>& vect)
+{
+	auto maxResIt = std::max_element(vect.begin(), vect.end());
+	return GetElementIndexes(vect, maxResIt);
+}
+
+// Find all min elements, returns indexes
+template <class T>
+std::vector<size_t> GetMinElementIndexes(const std::vector<T>& vect)
+{
+	auto minResIt = std::min_element(vect.begin(), vect.end());
+	return GetElementIndexes(vect, minResIt);
+}
