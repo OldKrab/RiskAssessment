@@ -21,12 +21,30 @@
     <ClCompile Include="BaseCriterion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HurwitzCriterion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ProbabilisticCriterion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HurwitzCriterionWithRisks.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseCriterion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HurwitzCriterion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ProbabilisticCriterion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HurwitzCriterionWithRisks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

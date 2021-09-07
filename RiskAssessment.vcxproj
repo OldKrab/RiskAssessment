@@ -140,11 +140,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BaseCriterion.cpp" />
+    <ClCompile Include="HurwitzCriterion.cpp" />
+    <ClCompile Include="HurwitzCriterionWithRisks.cpp" />
+    <ClCompile Include="ProbabilisticCriterion.cpp" />
     <ClCompile Include="RiskAssessment.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseCriterion.h" />
+    <ClInclude Include="HurwitzCriterion.h" />
+    <ClInclude Include="HurwitzCriterionWithRisks.h" />
     <ClInclude Include="Matrix.h" />
+    <ClInclude Include="ProbabilisticCriterion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
